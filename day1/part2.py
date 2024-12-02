@@ -12,20 +12,26 @@ def main():
             arr = line.split('   ')
             list1.append(int(arr[0]))
 
-            if (int(arr[1]) in dict2):
-                dict2[int(arr[1])] = dict2.get(int(arr[1])) + 1
+            arr[1] = int(arr[1])
+            #print('adding %d to dict' % (arr[1]))
+
+            if (arr[1] in dict2):
+                #print('%d is in dict, current value is %d' % (arr[1], dict2.get(arr[1])) )
+                dict2[arr[1]] = dict2.get(arr[1]) + 1
+                #print('new count of %d is %d' % (arr[1], dict2.get(arr[1])))
             else:
-                dict2.setdefault(int(arr[1]), 1)
+                #print('%d is not in dict, setting to 1' % (arr[1]))
+                dict2.setdefault(arr[1], 1)
+
+            #print('\n')
 
         print(list1)
         print('\n\n\n')
         print(dict2)
  
     for x in range(0, len(list1)):
-        if x in dict2: 
-            sim = dict2[x]
-        else:
-            sim = 0
+        sim = dict2.get(list1[x], 0)
+        
         similarities.append(list1[x] * sim)
 
 
